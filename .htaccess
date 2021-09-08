@@ -1,0 +1,10 @@
+ErrorDocument 404 https://holbrook.bergen.org/
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^holbrook\.bergen\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.holbrook\.bergen\.org$
+RewriteRule ^(.*)$ "https\:\/\/holbrook\.bergen\.org\/$1" [R=301,L]
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+Options -Indexes
