@@ -1,0 +1,9 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE="1252"%>
+<!--#include file="template/top.asp"-->
+  <br><h2 class="txt">
+	BCA Math Competition 2006
+	</h2>
+<h3 class="txt">Registration failed</h3>
+<p>Your registration was not successful.  <b>Please <a href="register.asp">try again</a></b> or <a href="mailto:1mathteam1@bergen.org">Contact Us</a><br></p>
+<p class="alert">Error #<%= Request("errorno") %>: <%= ParseErrorCode(Request("errorno")) %>
+<!--#include file="template/bottom.asp"-->

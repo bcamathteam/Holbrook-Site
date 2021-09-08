@@ -1,0 +1,46 @@
+<!--<br>-->
+  <h2 class="txt">
+	BCA Math Competition 2006 </h2>
+  <h3 class="txt">Coordinators:</h3>
+<table class="info">
+<!--<tr>
+  <td class="name">Webmaster:</td>
+  <td>&nbsp;&nbsp;Veena Ramakrishnan</td>
+</tr>-->
+<tr>
+  <td class="name">Student <br>Coordinators:&nbsp;</td>
+  <td>&nbsp;&nbsp;Caroline Drucker<br>
+  &nbsp;&nbsp;Veena Ramakrishnan</td>
+</tr>
+</table>
+
+<!--<h3 class="txt">Exam Leaders:</h3>
+<table class="info">
+<tr>
+  <td class="name" width="180">Fourth Grade:</td>
+  <td>&nbsp;&nbsp;4</td>
+</tr>
+<tr>
+  <td class="name" width="180">Fifth Grade:</td>
+  <td>&nbsp;&nbsp;5</td>
+</tr>
+<tr>
+  <td class="name" width="180">Sixth Grade:</td>
+  <td>&nbsp;&nbsp;6</td>
+</tr>
+<tr>
+  <td class="name" width="180">Seventh Grade:</td>
+  <td>&nbsp;&nbsp;7</td>
+</tr>
+<tr>
+  <td class="name" width="180">Eighth Grade:</td>
+  <td>&nbsp;&nbsp;8</td>
+</tr>
+</table> -->
+
+<h3 class="txt">Exam Authors:</h3>
+<ul class="txt">
+  <li>Awaiting Permissions </li>
+  <li>Person B </li>
+  <li>Person C </li>
+</ul>

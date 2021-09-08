@@ -1,0 +1,42 @@
+/*********************************************************************\
+ * template/style.css - cascading stylesheet used in all files       *
+ * BCA Math Competition Site                                         *
+ * Author: Rajesh Ramakrishnan                                       *
+ * Creation Date: 2006-May-20                                        * 
+\*********************************************************************/
+
+body.txt {background-color:white; font-family: 'Open Sans', sans-serif;}
+body.name {background-color:black; font-family: 'Open Sans', sans-serif;}
+p {color:black; font-size: 150%; font-family: 'Open Sans', sans-serif;}
+p.warn {color:red; font-size: 150%; font-family: 'Open Sans', sans-serif;}
+p.plus1 {color:black; font-size: 180%; font-family: 'Open Sans', sans-serif;}
+p.minus1 {color:black; font-size: 100%; font-family: 'Open Sans', sans-serif;}
+ul.txt {color: #eaa722; font-size: 150%; font-family: 'Open Sans', sans-serif;}
+h1.txt {color: #fcba37; font-size: 230%; font-family: 'Open Sans', sans-serif;}
+h2.txt {color: #214f99; font-size: 200%; font-family: 'Open Sans', sans-serif;}
+h3.txt {color: #214f99; font-size: 180%; font-family: 'Open Sans', sans-serif;}
+a {color: #eaa722; font-family: 'Open Sans', sans-serif;}
+a.emph {color:black; font-weight:bold; font-family: 'Open Sans', sans-serif;}
+table.leftbar { width: 140;
+	font-family:Arial, sans-serif;
+	background-color:black;
+}
+table.base-top {
+	border-style:solid;
+	border-width:6px 6px 6px 6px;
+	border-color:#eaa722;
+}
+td.base-divide { margin-right:0px; margin-left:0px; border-style:solid; border-width:0px 0px 6px 0px;border-color:#eaa722;}
+td.base-mid { border-style:solid;border-width:0px 6px 6px 0px;border-color:#eaa722;}
+td.name {color:#214f99; font-family:"Arial Bold", sans-serif}
+td.weh {color:white; font-weight:bold; font-family:"Arial Bold", sans-serif}
+.alert {color:red; font-weight:bold; font-family:"Arial Bold", sans-serif} 
+table.info { width: auto;
+	/* background-color:#086363; 
+	font-family:Arial, sans-serif;
+	background-color:black;
+	color:gold;
+	font-size:150%;
+	border-width:thick;	
+}
+

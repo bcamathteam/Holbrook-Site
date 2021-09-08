@@ -1,0 +1,52 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+	<title></title>
+</head>
+<body><script language="javascript">
+//-------------+
+// Google Maps |
+//-------------+
+		
+function CreateGoogleMap() {
+	if (GBrowserIsCompatible()) {
+		var map = new GMap2(document.getElementById("map"));
+		var school = new GLatLng(40.902184, -74.034720)
+		map.addControl(new GLargeMapControl());
+		map.addControl(new GMapTypeControl());
+		map.setCenter(school, 13);
+		var toheretxt = '<strong><a href="http://www.bergen.org">Bergen County Academies</a></strong><br>' + 
+			'200 Hackensack Avenue<br>' + 
+			'Hackensack, NJ 07601<br>' +
+			'<br>' +
+			'Driving from:<form action="http://maps.google.com/maps" method="get" target="_blank">' +
+			'<input type="text" SIZE=40 MAXLENGTH=40 name="saddr" id="saddr" value="" /><br>' +
+			'<INPUT value="Get Directions" TYPE="SUBMIT">' +
+			'<input type="hidden" name="daddr" value="200 Hackensack Avenue, 07601'
+			+ "(" + 'Bergen County Academies' + ")" + '"/>';
+		AddMarker(map, school, toheretxt);
+	}
+}
+function AddMarker(gmap, point, txt) {
+	var marker = new GMarker(point);
+	GEvent.addListener(marker, "click", function() {
+		marker.openInfoWindowHtml(txt);
+	});		
+	gmap.addOverlay(marker);
+}
+</script><!--<br>-->
+<h2 class="txt">Bergen County Academies:</h2>
+
+<p class="txt">200 Hackensack Avenue<br />
+Hackensack, New Jersey 07601</p>
+
+<!--<div id="map" style="width: 500px; height: 300px"></div>-->
+<div class="mapouter" id="map"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=200%20Hackensack%20Ave.%2C%20Hackensack%2C%20NJ%2007670&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net">bitgeeks</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+<script language="javascript">
+// Make call
+setTimeout('CreateGoogleMap();', 100); 
+window.unload = function() { GUnload(); };
+</script>
+
+<p></p>
+</body>
+</html>

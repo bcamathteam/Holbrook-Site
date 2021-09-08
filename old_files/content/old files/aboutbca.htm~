@@ -1,0 +1,22 @@
+<!--<br>-->
+  <h2 class="txt">
+	Bergen County Academies </h2>
+  <h3 class="txt">Administration:</h3>
+<table class="info">
+<tr>
+	<td class="name" width="180">Superintendent:</td>
+	<td>&nbsp;&nbsp;Robert Aloia</td>
+</tr>
+<tr>
+	<td class="name">Principal:</td>
+	<td>&nbsp;&nbsp;Patricia Cosgrove</td>
+</tr>
+<tr>
+	<td class="name">Vice Principal:</td>
+	<td>&nbsp;&nbsp;Russell Davis</td>
+</tr>
+<tr>
+	<td class="name">Admissions:</td>
+	<td>&nbsp;&nbsp;David Ostfeld</td>
+</tr>
+</table>

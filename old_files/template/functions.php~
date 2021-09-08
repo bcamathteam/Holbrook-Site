@@ -1,0 +1,144 @@
+<?php
+/*********************************************************************\
+ * template/functions.php - php to mysql conduit                     *
+ * BCA Math Competition Site                                         *
+ * Author: Rajesh Ramakrishnan                                       *
+ * Creation Date: 2006-May-24                                        * 
+\*********************************************************************/
+
+//----------------------------------------------------------------------------+
+// Constants -- These are the only things that should be changed in this file |
+//----------------------------------------------------------------------------+
+
+//mysql
+$server_name = "localhost";
+$username = "root";
+$password = "";
+$database = "mathteam";
+$table = "registration";
+
+//paypal
+$base_url = "http://www.bergen.org/mathcompetition/"; //trailing '/' necessary
+//$paypal = "https://www.sandbox.paypal.com/cgi-bin/webscr"; // use for demo registration
+$paypal = "demo.php";
+
+//$paypal = "https://www.paypal.com/cgi-bin/webscr"; // use for live registration
+
+//--------------------------------------------------------------------+
+// First-order Functions -- These may need some tweaking in migration |
+//--------------------------------------------------------------------+
+
+/// Connects to mysql to make an SQL query. 
+/// $query - string containing an SQL query to execute
+/// returns: -2 on connection failure
+///          -1 on database failure
+///           0 on query failure
+///    resource on success
+function execute_query($query) {
+	/// grab the values from above
+	global $server_name, $username, $password, $database;
+	//echo("$server_name, $username, $password, $database, $table");
+
+	/// set up database handle (suppress errors with @)
+	$db_handle = mysql_connect($server_name,$username,$password);
+	if(!$db_handle) return -2; //did not connect to mysql server
+	if(!(mysql_select_db($database,$db_handle))) return -1; //did not select database
+	
+	/// run query
+	$result = mysql_query($query,$db_handle);
+	if(!$result) return 0; /* failed execution*/
+	return $result; //success
+}
+
+/// Connects to mysql and gets row count. 
+/// $resource - mysql resource
+/// returns: -1 on fetch failure
+///   row count on success
+function row_count($resource) {
+	return mysql_num_rows($resource);
+}
+
+/// Connects to mysql and grabs row to an associative array.
+/// $resource - mysql resource
+/// returns: -1 on fetch failure
+///         row on success
+function get_array($resource) {
+	return mysql_fetch_array($resource);
+}
+
+//--------------------------------------------------------------------------+
+// Second-order Functions -- These should not require tweaking in migration |
+//--------------------------------------------------------------------------+
+
+function register($fn,$ln,$addr,$city,$state,$zip,$bday,$grade,$school,$email) {
+	/// grab table name
+	global $table;
+	
+	/// check current records
+	$sql = "SELECT * FROM $table WHERE first_name='$fn' AND last_name='$ln' AND birthday='$bday' AND address='$addr' AND payment!=99";
+	$result = execute_query($sql);
+	//echo "check 0:" . $result . "--" . row_count($result) ."<br>\n"; //should be a resource id
+	if($result <= 0) return 30 - $result;
+	if(row_count($result) != 0) return 34;
+	
+	/// add new record
+	$sql = "INSERT INTO $table (first_name, last_name, address, city, state, zip, birthday, grade, school, email, payment) ";
+	$sql .= "VALUES('$fn','$ln','$addr','$city','$state','$zip','$bday','$grade','$school','$email', 99)";
+	$result = execute_query($sql);
+   //echo "check 1:" . $result . "\n"; //should be 1
+	//if($result <= 0) return 20 - $result;
+	
+	/// get auto-generated id
+	$sql = "SELECT * FROM $table WHERE first_name='$fn' AND last_name='$ln' AND birthday='$bday' AND address='$addr' AND payment=99";
+	$result = execute_query($sql);
+   //echo "check 2:" . $result . "\n"; //should be another resource id
+	if($result <= 0) return 10 - $result; 
+	if(row_count($result) != 1) return 14;
+	$result = get_array($result);
+	$id = $result['id'];
+	return 100*$id;
+}
+
+function unregister($id) {
+	return execute_query("DELETE FROM $table WHERE id=$id");
+}
+
+function verify($id) {
+	return execute_query("UPDATE $table SET payment=1 WHERE id=$id");
+}
+
+function forward_hash($id) {
+	return $id;
+}
+
+function verify_hash($id,$hash) {
+	return $hash == forward_hash($id);
+}
+
+function ParseErrorCode($ErrorCode) {
+	$Mantissa = int(floor($ErrorCode / 10));
+	if($Mantissa == 5)
+		echo( "Unable to verify payment." );
+	if($Mantissa == 4)
+		echo( "Payment Canceled." );
+	if($Mantissa == 3)
+		echo( "Unable to generate new student ID -- " );
+	if($Mantissa == 2)
+		echo( "Unable to add to registration database -- " );
+   if($Mantissa == 1)
+      echo( "Unable to check current registrants -- " );
+	
+	
+	$Mantissa = $ErrorCode - 10 * $Mantissa;
+   if($Mantissa == 0)
+   	echo( "Could not execute query. ");
+   if($Mantissa == 1)
+      echo( "Could not select database.");
+   if($Mantissa == 2)
+      echo( "Could not connect to server.");
+   if($Mantissa == 4)
+		echo( "Duplicate record exists.");
+	
+}
+
+?>

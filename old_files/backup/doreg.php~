@@ -1,0 +1,31 @@
+<?php
+include("template/functions.php");
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$home_addr = $_POST['home_addr'];
+$home_city = $_POST['home_city'];
+$home_state = $_POST['home_state'];
+$home_zip = $_POST['home_zip'];
+$birth_year = $_POST['birth_year'];
+$birth_month = $_POST['birth_month'];
+$birth_day = $_POST['birth_day'];
+$grade = $_POST['grade'];
+$school = $_POST['school'];
+$email = $_POST['email'];
+
+if(strlen("'" . $birth_month . "'") == 3) $birth_month = "0" . $birth_month;
+if(strlen("'" . $birth_day . "'") == 3) $birth_day = "0" . $birth_day;
+
+$birthday = "" . $birth_year . "-" . $birth_month . "-" . $birth_day;
+
+$res = register($first_name, $last_name, $home_addr, $home_city, $home_state, $home_zip, $birthday, $grade, $school, $email);
+echo $res;
+if($res <= 100) { //failure
+	header("Location: failure.asp?errorno=$res");
+	exit;
+}
+else { //success 
+	echo("success!");
+	exit;	
+}
+?>

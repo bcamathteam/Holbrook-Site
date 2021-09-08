@@ -1,0 +1,42 @@
+<script language="javascript">
+//-------------+
+// Google Maps |
+//-------------+
+		
+function CreateGoogleMap() {
+	if (GBrowserIsCompatible()) {
+		var map = new GMap2(document.getElementById("map"));
+		var school = new GLatLng(40.902184, -74.034720)
+		map.addControl(new GLargeMapControl());
+		map.addControl(new GMapTypeControl());
+		map.setCenter(school, 13);
+		var toheretxt = '<strong><a href="http://www.bergen.org">Bergen County Academies</a></strong><br>' + 
+			'200 Hackensack Avenue<br>' + 
+			'Hackensack, NJ 07601<br>' +
+			'<br>' +
+			'Driving from:<form action="http://maps.google.com/maps" method="get" target="_blank">' +
+			'<input type="text" SIZE=40 MAXLENGTH=40 name="saddr" id="saddr" value="" /><br>' +
+			'<INPUT value="Get Directions" TYPE="SUBMIT">' +
+			'<input type="hidden" name="daddr" value="200 Hackensack Avenue, 07601'
+			+ "(" + 'Bergen County Academies' + ")" + '"/>';
+		AddMarker(map, school, toheretxt);
+	}
+}
+function AddMarker(gmap, point, txt) {
+	var marker = new GMarker(point);
+	GEvent.addListener(marker, "click", function() {
+		marker.openInfoWindowHtml(txt);
+	});		
+	gmap.addOverlay(marker);
+}
+</script>  
+<!--<br>-->
+  <h2 class="txt">
+	Bergen County Academies:
+	</h2>
+<div id="map" style="width: 500px; height: 300px">  </div>
+<script language="javascript">
+// Make call
+setTimeout('CreateGoogleMap();', 100); 
+window.unload = function() { GUnload(); };
+</script>

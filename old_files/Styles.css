@@ -1,0 +1,47 @@
+a:link {
+	color: #777777;
+}
+ 
+a:active {
+	color: #e4e4e4;
+} 
+
+a:visited {
+	color: #777777;
+}
+ 
+a:hover {
+	color: #e4e4e4;
+}
+
+td {
+	font-weight: bold;
+	font-size: small;
+}
+
+body {
+	font-family: tahoma;
+	background: #C6C3C6 url('./images/bg3.gif') repeat-y fixed bottom left;
+	border-style: none;
+	border-width: 0px;
+	margin: 0px 0px 0px 100px;
+}
+
+.style1 {
+	font-size: medium;
+}
+
+/*#video { 
+	text-align: left;
+	position: absolute;
+	left: 420px;
+	top: 320px;
+}*/
+
+h1 {
+	text-align: center;
+}
+
+p {
+	text-align: left;
+}
